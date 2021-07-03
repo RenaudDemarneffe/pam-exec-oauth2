@@ -21,14 +21,14 @@
 package main
 
 import (
-	"bufio"
-	"context"
+// 	"bufio"
+// 	"context"
 	"fmt"
-	"net/url"
-	"os"
-	"path/filepath"
+// 	"net/url"
+// 	"os"
+// 	"path/filepath"
 
-// 	"github.com/shimt/go-simplecli"
+	"github.com/shimt/go-simplecli"
 // 	"github.com/RenaudDemarneffe/pam-exec-oauth2/internal/oauth2"
 )
 
