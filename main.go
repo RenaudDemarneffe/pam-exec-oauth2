@@ -35,6 +35,7 @@ import (
 var cli = simplecli.NewCLI()
 
 func initCLI() {
+	fmt.Println("-----------> initCLI")
 	cli.CommandLine.String("client-id", "", "OAuth2 Client ID")
 	cli.CommandLine.String("client-secret", "", "OAuth2 Client Secret")
 	cli.CommandLine.StringArray("scopes", []string{}, "OAuth2 Scopes")
@@ -59,6 +60,7 @@ func init() {
 }
 
 func main() {
+	fmt.Println("-----------> main")
 	setting := cli.NewCLISetting()
 	err := cli.Setup(
 		setting.ConfigSearchPath(),
