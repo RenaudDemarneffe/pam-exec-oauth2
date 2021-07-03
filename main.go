@@ -28,31 +28,31 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/shimt/go-simplecli"
-	"github.com/RenaudDemarneffe/pam-exec-oauth2/internal/oauth2"
+// 	"github.com/shimt/go-simplecli"
+// 	"github.com/RenaudDemarneffe/pam-exec-oauth2/internal/oauth2"
 )
 
 var cli = simplecli.NewCLI()
 
 func initCLI() {
 	fmt.Println("-----------> initCLI")
-	cli.CommandLine.String("client-id", "", "OAuth2 Client ID")
-	cli.CommandLine.String("client-secret", "", "OAuth2 Client Secret")
-	cli.CommandLine.StringArray("scopes", []string{}, "OAuth2 Scopes")
-	cli.CommandLine.String("redirect-url", "", "OAuth2 Redirect URL")
-	cli.CommandLine.String("endpoint-auth-url", "", "OAuth2 End Point Auth URL")
-	cli.CommandLine.String("endpoint-token-url", "", "OAuth2 End Point Token URL")
-	cli.CommandLine.String("username-format", "%s", "username format")
-
-	cli.BindSameName(
-		"client-id",
-		"client-secret",
-		"scopes",
-		"redirect-url",
-		"endpoint-auth-url",
-		"endpoint-token-url",
-		"username-format",
-	)
+// 	cli.CommandLine.String("client-id", "", "OAuth2 Client ID")
+// 	cli.CommandLine.String("client-secret", "", "OAuth2 Client Secret")
+// 	cli.CommandLine.StringArray("scopes", []string{}, "OAuth2 Scopes")
+// 	cli.CommandLine.String("redirect-url", "", "OAuth2 Redirect URL")
+// 	cli.CommandLine.String("endpoint-auth-url", "", "OAuth2 End Point Auth URL")
+// 	cli.CommandLine.String("endpoint-token-url", "", "OAuth2 End Point Token URL")
+// 	cli.CommandLine.String("username-format", "%s", "username format")
+//
+// 	cli.BindSameName(
+// 		"client-id",
+// 		"client-secret",
+// 		"scopes",
+// 		"redirect-url",
+// 		"endpoint-auth-url",
+// 		"endpoint-token-url",
+// 		"username-format",
+// 	)
 }
 
 func init() {
@@ -61,68 +61,68 @@ func init() {
 
 func main() {
 	fmt.Println("-----------> main")
-	setting := cli.NewCLISetting()
-	err := cli.Setup(
-		setting.ConfigSearchPath(),
-		setting.ConfigFile(filepath.Join(cli.Application.Directory, cli.Application.Name+".yaml")),
-	)
-	cli.Exit1IfError(err)
-
-	if cli.ConfigFile != "" {
-		fmt.Println("Using config file:", cli.ConfigFile)
-	}
-
-	username := os.Getenv("PAM_USER")
-	password := ""
-
-	stdinScanner := bufio.NewScanner(os.Stdin)
-	if stdinScanner.Scan() {
-		password = stdinScanner.Text()
-	}
-
-	cli.Log.Debug("create oauth2Config")
-	cli.Log.Debugf("ClientID: %s", cli.Config.GetString("client-id"))
-	cli.Log.Debugf("ClientSecret: %s", cli.Config.GetString("client-secret"))
-	cli.Log.Debugf("Scopes: %s", cli.Config.GetStringSlice("scopes"))
-	cli.Log.Debugf("EndPoint.AuthURL: %s", cli.Config.GetString("endpoint-auth-url"))
-	cli.Log.Debugf("EndPoint.TokenURL: %s", cli.Config.GetString("endpoint-token-url"))
-
-	oauth2Config := oauth2.Config{
-		ClientID:     cli.Config.GetString("client-id"),
-		ClientSecret: cli.Config.GetString("client-secret"),
-		Scopes:       cli.Config.GetStringSlice("scopes"),
-		Endpoint: oauth2.Endpoint{
-			AuthURL:  cli.Config.GetString("endpoint-auth-url"),
-			TokenURL: cli.Config.GetString("endpoint-token-url"),
-		},
-	}
-
-	extraParameters := url.Values{}
-
-	for k, v := range cli.Config.GetStringMapString("extra-parameters") {
-		extraParameters[k] = []string{v}
-	}
-
-	cli.Log.Debug("create oauth2Context")
-
-	oauth2Context := context.Background()
-
-	cli.Log.Debug("call PasswordCredentialsToken")
-
-	oauth2Token, err := oauth2Config.PasswordCredentialsTokenEx(
-		oauth2Context,
-		fmt.Sprintf(cli.Config.GetString("username-format"), username),
-		password,
-		extraParameters,
-	)
-
-	cli.Exit1IfError(err)
-
-	if !oauth2Token.Valid() {
-		cli.Exit(1)
-		cli.Log.Debug("OAuth2 authentication failed")
-	}
-
-	cli.Log.Debug("OAuth2 authentication success")
+// 	setting := cli.NewCLISetting()
+// 	err := cli.Setup(
+// 		setting.ConfigSearchPath(),
+// 		setting.ConfigFile(filepath.Join(cli.Application.Directory, cli.Application.Name+".yaml")),
+// 	)
+// 	cli.Exit1IfError(err)
+//
+// 	if cli.ConfigFile != "" {
+// 		fmt.Println("Using config file:", cli.ConfigFile)
+// 	}
+//
+// 	username := os.Getenv("PAM_USER")
+// 	password := ""
+//
+// 	stdinScanner := bufio.NewScanner(os.Stdin)
+// 	if stdinScanner.Scan() {
+// 		password = stdinScanner.Text()
+// 	}
+//
+// 	cli.Log.Debug("create oauth2Config")
+// 	cli.Log.Debugf("ClientID: %s", cli.Config.GetString("client-id"))
+// 	cli.Log.Debugf("ClientSecret: %s", cli.Config.GetString("client-secret"))
+// 	cli.Log.Debugf("Scopes: %s", cli.Config.GetStringSlice("scopes"))
+// 	cli.Log.Debugf("EndPoint.AuthURL: %s", cli.Config.GetString("endpoint-auth-url"))
+// 	cli.Log.Debugf("EndPoint.TokenURL: %s", cli.Config.GetString("endpoint-token-url"))
+//
+// 	oauth2Config := oauth2.Config{
+// 		ClientID:     cli.Config.GetString("client-id"),
+// 		ClientSecret: cli.Config.GetString("client-secret"),
+// 		Scopes:       cli.Config.GetStringSlice("scopes"),
+// 		Endpoint: oauth2.Endpoint{
+// 			AuthURL:  cli.Config.GetString("endpoint-auth-url"),
+// 			TokenURL: cli.Config.GetString("endpoint-token-url"),
+// 		},
+// 	}
+//
+// 	extraParameters := url.Values{}
+//
+// 	for k, v := range cli.Config.GetStringMapString("extra-parameters") {
+// 		extraParameters[k] = []string{v}
+// 	}
+//
+// 	cli.Log.Debug("create oauth2Context")
+//
+// 	oauth2Context := context.Background()
+//
+// 	cli.Log.Debug("call PasswordCredentialsToken")
+//
+// 	oauth2Token, err := oauth2Config.PasswordCredentialsTokenEx(
+// 		oauth2Context,
+// 		fmt.Sprintf(cli.Config.GetString("username-format"), username),
+// 		password,
+// 		extraParameters,
+// 	)
+//
+// 	cli.Exit1IfError(err)
+//
+// 	if !oauth2Token.Valid() {
+// 		cli.Exit(1)
+// 		cli.Log.Debug("OAuth2 authentication failed")
+// 	}
+//
+// 	cli.Log.Debug("OAuth2 authentication success")
 	cli.Exit(0)
 }
