@@ -8,7 +8,7 @@ package endpoints
 import (
 	"strings"
 
-	"github.com/shimt/pam-exec-oauth2/internal/oauth2"
+	"github.com/RenaudDemarneffe/pam-exec-oauth2/internal/oauth2"
 )
 
 // Amazon is the endpoint for Amazon.

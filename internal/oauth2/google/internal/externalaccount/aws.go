@@ -13,7 +13,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/shimt/pam-exec-oauth2/internal/oauth2"
+	"github.com/RenaudDemarneffe/pam-exec-oauth2/internal/oauth2"
 	"io"
 	"io/ioutil"
 	"net/http"

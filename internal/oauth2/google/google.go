@@ -14,9 +14,9 @@ import (
 	"time"
 
 	"cloud.google.com/go/compute/metadata"
-	"github.com/shimt/pam-exec-oauth2/internal/oauth2"
-	"github.com/shimt/pam-exec-oauth2/internal/oauth2/google/internal/externalaccount"
-	"github.com/shimt/pam-exec-oauth2/internal/oauth2/jwt"
+	"github.com/RenaudDemarneffe/pam-exec-oauth2/internal/oauth2"
+	"github.com/RenaudDemarneffe/pam-exec-oauth2/internal/oauth2/google/internal/externalaccount"
+	"github.com/RenaudDemarneffe/pam-exec-oauth2/internal/oauth2/jwt"
 )
 
 // Endpoint is Google's OAuth 2.0 default endpoint.
