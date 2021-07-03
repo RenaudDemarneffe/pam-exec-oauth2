@@ -1,4 +1,4 @@
-module github.com/shimt/pam-exec-oauth2
+module github.com/RenaudDemarneffe/pam-exec-oauth2
 
 replace oauth2 => ./vendor/oauth2
 
