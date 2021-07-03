@@ -1,4 +1,4 @@
-module github.com/shimt/pam-exec-oauth2
+module github.com/RenaudDemarneffe/pam-exec-oauth2
 
 require (
 	cloud.google.com/go v0.46.3
